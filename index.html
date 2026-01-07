@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Scores - Windows XP Style</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Desktop -->
+    <div id="desktop" class="desktop">
+        <!-- Team Icons -->
+        <!-- Fixed icon positioning with absolute positions -->
+        <div class="desktop-icon" data-team="man-united" style="left: 20px; top: 20px;">
+            <div class="icon-image">
+                <img src="images/man-united-badge.png" alt="Manchester United">
+            </div>
+            <div class="icon-label">Man United</div>
+        </div>
+
+        <div class="desktop-icon" data-team="liverpool" style="left: 20px; top: 120px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/40.png" alt="Liverpool">
+            </div>
+            <div class="icon-label">Liverpool</div>
+        </div>
+
+        <div class="desktop-icon" data-team="arsenal" style="left: 20px; top: 220px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/42.png" alt="Arsenal">
+            </div>
+            <div class="icon-label">Arsenal</div>
+        </div>
+
+        <div class="desktop-icon" data-team="man-city" style="left: 20px; top: 320px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/50.png" alt="Man City">
+            </div>
+            <div class="icon-label">Man City</div>
+        </div>
+
+        <div class="desktop-icon" data-team="chelsea" style="left: 20px; top: 420px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/49.png" alt="Chelsea">
+            </div>
+            <div class="icon-label">Chelsea</div>
+        </div>
+
+        <div class="desktop-icon" data-team="tottenham" style="left: 120px; top: 20px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/47.png" alt="Tottenham">
+            </div>
+            <div class="icon-label">Tottenham</div>
+        </div>
+
+        <div class="desktop-icon" data-team="newcastle" style="left: 120px; top: 120px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/34.png" alt="Newcastle">
+            </div>
+            <div class="icon-label">Newcastle</div>
+        </div>
+
+        <div class="desktop-icon" data-team="aston-villa" style="left: 120px; top: 220px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/66.png" alt="Aston Villa">
+            </div>
+            <div class="icon-label">Aston Villa</div>
+        </div>
+
+        <div class="desktop-icon" data-team="brighton" style="left: 120px; top: 320px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/51.png" alt="Brighton">
+            </div>
+            <div class="icon-label">Brighton</div>
+        </div>
+
+        <div class="desktop-icon" data-team="west-ham" style="left: 120px; top: 420px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/48.png" alt="West Ham">
+            </div>
+            <div class="icon-label">West Ham</div>
+        </div>
+
+        <div class="desktop-icon" data-team="everton" style="left: 220px; top: 20px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/45.png" alt="Everton">
+            </div>
+            <div class="icon-label">Everton</div>
+        </div>
+
+        <div class="desktop-icon" data-team="fulham" style="left: 220px; top: 120px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/36.png" alt="Fulham">
+            </div>
+            <div class="icon-label">Fulham</div>
+        </div>
+
+        <div class="desktop-icon" data-team="brentford" style="left: 220px; top: 220px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/55.png" alt="Brentford">
+            </div>
+            <div class="icon-label">Brentford</div>
+        </div>
+
+        <div class="desktop-icon" data-team="crystal-palace" style="left: 220px; top: 320px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/52.png" alt="Crystal Palace">
+            </div>
+            <div class="icon-label">Crystal Palace</div>
+        </div>
+
+        <div class="desktop-icon" data-team="nottm-forest" style="left: 220px; top: 420px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/65.png" alt="Nottingham Forest">
+            </div>
+            <div class="icon-label">Nottm Forest</div>
+        </div>
+
+        <div class="desktop-icon" data-team="bournemouth" style="left: 320px; top: 20px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/35.png" alt="Bournemouth">
+            </div>
+            <div class="icon-label">Bournemouth</div>
+        </div>
+
+        <div class="desktop-icon" data-team="leicester" style="left: 320px; top: 120px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/46.png" alt="Leicester">
+            </div>
+            <div class="icon-label">Leicester</div>
+        </div>
+
+        <div class="desktop-icon" data-team="wolves" style="left: 320px; top: 220px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/39.png" alt="Wolves">
+            </div>
+            <div class="icon-label">Wolves</div>
+        </div>
+
+        <div class="desktop-icon" data-team="ipswich" style="left: 320px; top: 320px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/57.png" alt="Ipswich">
+            </div>
+            <div class="icon-label">Ipswich</div>
+        </div>
+
+        <div class="desktop-icon" data-team="southampton" style="left: 320px; top: 420px;">
+            <div class="icon-image">
+                <img src="https://media.api-sports.io/football/teams/41.png" alt="Southampton">
+            </div>
+            <div class="icon-label">Southampton</div>
+        </div>
+
+        <!-- Added Fantasy Team icon -->
+        <div class="desktop-icon" id="fantasyIcon" style="right: 120px; top: 20px;">
+            <div class="icon-image">
+                <div style="font-size: 40px;">⚽</div>
+            </div>
+            <div class="icon-label">Fantasy Team</div>
+        </div>
+
+        <!-- Premier League Icon -->
+        <div class="desktop-icon" id="premierLeagueIcon" style="right: 20px; top: 20px;">
+            <div class="icon-image">
+                <img src="images/premier-league-logo.png" alt="Premier League">
+            </div>
+            <div class="icon-label">Premier League</div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button" id="startButton">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M3 13h8v8H3zm0-10h8v8H3zm10 0h8v8h-8zm0 10h8v8h-8z'/%3E%3C/svg%3E" alt="Start" width="16" height="16">
+            Start
+        </button>
+        <div class="taskbar-windows" id="taskbarWindows"></div>
+        <div class="taskbar-clock" id="clock">12:00 PM</div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu hidden" id="startMenu">
+        <div class="start-menu-header">⚽ Football Scores</div>
+        <div class="start-menu-section">
+            <div class="start-menu-title">Live & Upcoming</div>
+            <button class="start-menu-item" data-action="live">📡 Live Matches</button>
+            <button class="start-menu-item" data-action="upcoming">🗓️ Upcoming Matches</button>
+        </div>
+        <div class="start-menu-section">
+            <div class="start-menu-title">Match History</div>
+            <button class="start-menu-item" data-action="today">Today's Matches</button>
+            <button class="start-menu-item" data-action="yesterday">Yesterday</button>
+            <button class="start-menu-item" data-action="2days">2 Days Ago</button>
+        </div>
+        <div class="start-menu-section">
+            <div class="start-menu-title">Quick Links</div>
+            <button class="start-menu-item" data-action="standings">📊 League Table</button>
+            <button class="start-menu-item" data-action="scorers">👟 Top Scorers</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

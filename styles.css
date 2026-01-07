@@ -1,0 +1,1106 @@
+/* Windows XP Style Football Scores */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "MS Sans Serif", "Tahoma", sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Desktop */
+.desktop {
+  height: 100vh;
+  /* Changed to relative path for background */
+  background-image: url("images/windows-xp-bliss.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 10;
+  /* Reduced gap to prevent icons from being too low */
+  max-height: calc(100vh - 100px);
+}
+
+.premier-league-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  width: 80px;
+  padding: 5px;
+  transition: opacity 0.2s;
+  /* Added position for dragging */
+  position: absolute;
+}
+
+.desktop-icon:hover {
+  opacity: 0.8;
+}
+
+.desktop-icon.selected {
+  background: rgba(0, 84, 255, 0.3);
+  border: 1px dotted rgba(255, 255, 255, 0.8);
+}
+
+.icon-image {
+  width: 64px;
+  height: 64px;
+  background: white;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.icon-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.icon-label {
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+}
+
+/* Taskbar */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #c0c0c0;
+  border-top: 2px solid white;
+  box-shadow: inset 0 1px 0 #dfdfdf;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  gap: 4px;
+  z-index: 1000;
+}
+
+.start-button {
+  height: 32px;
+  padding: 0 16px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: white #000 #000 white;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.start-button:active {
+  border-color: #000 white white #000;
+  box-shadow: inset -1px -1px 0 #dfdfdf, inset 1px 1px 0 #808080;
+}
+
+.start-button img {
+  width: 16px;
+  height: 16px;
+}
+
+.taskbar-windows {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.taskbar-window {
+  height: 32px;
+  padding: 0 12px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: white #000 #000 white;
+  box-shadow: inset 1px 1px 0 #dfdfdf;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+  max-width: 200px;
+}
+
+.taskbar-window.active {
+  border-color: #000 white white #000;
+  box-shadow: inset -1px -1px 0 #dfdfdf, inset 1px 1px 0 #808080;
+}
+
+.taskbar-clock {
+  height: 32px;
+  padding: 0 12px;
+  border: 2px solid;
+  border-color: #808080 white white #808080;
+  box-shadow: inset -1px -1px 0 #dfdfdf;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+}
+
+/* Start Menu */
+.start-menu {
+  position: fixed;
+  bottom: 42px;
+  left: 2px;
+  width: 300px;
+  background: linear-gradient(135deg, #ff1493, #0084ff);
+  border: 2px solid;
+  border-color: white #000 #000 white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.start-menu.hidden {
+  display: none;
+}
+
+.start-menu-header {
+  background: linear-gradient(90deg, #ff1493, #0084ff);
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 2px solid #000;
+}
+
+.start-menu-section {
+  background: #c0c0c0;
+  border-bottom: 2px solid #808080;
+}
+
+.start-menu-title {
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+  background: #dfdfdf;
+  border-bottom: 1px solid #808080;
+}
+
+.start-menu-item {
+  width: 100%;
+  padding: 8px 20px;
+  background: #c0c0c0;
+  border: none;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.start-menu-item:hover {
+  background: #0084ff;
+  color: white;
+}
+
+/* Window Popup */
+.window-popup {
+  position: absolute;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #dfdfdf #000 #000 #dfdfdf;
+  box-shadow: inset 1px 1px 0 white, inset -1px -1px 0 #808080, 2px 2px 8px rgba(0, 0, 0, 0.5);
+  min-width: 400px;
+  z-index: 100;
+}
+
+.window-popup.active {
+  z-index: 200;
+}
+
+.window-title-bar {
+  background: linear-gradient(90deg, #ff1493, #0084ff);
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+}
+
+.window-title {
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  flex: 1;
+  padding-left: 4px;
+}
+
+.window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.window-button {
+  width: 16px;
+  height: 14px;
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: white #000 #000 white;
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.window-button:active {
+  border-color: #000 white white #000;
+}
+
+/* Made table scrollable to show all 20 teams */
+.window-content {
+  background: white;
+  border: 2px solid #808080;
+  margin: 2px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Window content styling */
+.content-padding {
+  padding: 16px;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.team-badge {
+  text-align: center;
+}
+
+.badge-frame {
+  display: inline-block;
+  background: #dfdfdf;
+  border: 4px solid black;
+  padding: 16px;
+}
+
+.badge-frame img {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+}
+
+.team-name {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.info-box {
+  border: 2px solid #808080;
+  background: #dfdfdf;
+  padding: 12px;
+}
+
+.info-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: black;
+  border-bottom: 2px solid black;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.kit-display {
+  display: flex;
+  justify-content: center;
+}
+
+.kit-display img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-photo {
+  width: 96px;
+  height: 96px;
+  border: 2px solid black;
+  object-fit: cover;
+}
+
+.player-details {
+  flex: 1;
+}
+
+.player-name {
+  font-weight: bold;
+  color: black;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.player-era {
+  font-size: 12px;
+  color: #808080;
+}
+
+/* Enhanced player stats display */
+.player-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.stat-item {
+  background: white;
+  border: 2px solid #808080;
+  padding: 8px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0084ff;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #808080;
+  text-transform: uppercase;
+}
+
+/* Fixtures Window */
+.fixtures-toolbar {
+  background: #dfdfdf;
+  border-bottom: 2px solid #808080;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.button-98 {
+  padding: 6px 12px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: white #000 #000 white;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button-98:active {
+  border-color: #000 white white #000;
+  box-shadow: inset -1px -1px 0 #dfdfdf, inset 1px 1px 0 #808080;
+}
+
+/* Fixed fixtures window overflow and table scrolling */
+.fixtures-list {
+  padding: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.date-header {
+  font-size: 11px;
+  color: #808080;
+  font-weight: bold;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #808080;
+}
+
+.fixture-item {
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: white #000 #000 white;
+}
+
+.fixture-item:hover {
+  background: #dfdfdf;
+}
+
+.fixture-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.team-name-fix {
+  font-weight: bold;
+  color: black;
+  flex: 1;
+  min-width: 0;
+}
+
+.fixture-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.score-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.score-separator {
+  font-size: 16px;
+  font-weight: bold;
+  color: #808080;
+}
+
+/* Match Details */
+.match-details {
+  padding: 16px;
+}
+
+.match-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.match-team {
+  flex: 1;
+  text-align: center;
+}
+
+.match-team-logo {
+  width: 64px;
+  height: 64px;
+  background: #dfdfdf;
+  border: 2px solid black;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.match-team-name {
+  font-weight: bold;
+  color: black;
+  font-size: 12px;
+}
+
+.match-score-display {
+  text-align: center;
+  padding: 0 32px;
+}
+
+.match-score-numbers {
+  font-size: 48px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 8px;
+}
+
+.match-status {
+  font-size: 11px;
+  color: #808080;
+}
+
+.match-info {
+  border-top: 2px solid #808080;
+  padding-top: 12px;
+}
+
+.match-date {
+  font-size: 11px;
+  color: black;
+}
+
+/* Added prediction bar styles */
+.prediction-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.prediction-team {
+  font-size: 11px;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+}
+
+.prediction-visual {
+  flex: 1;
+  height: 24px;
+  background: #dfdfdf;
+  border: 2px solid #808080;
+  display: flex;
+  overflow: hidden;
+}
+
+.prediction-home {
+  background: linear-gradient(90deg, #0084ff, #4da6ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.prediction-draw {
+  background: linear-gradient(90deg, #808080, #a0a0a0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.prediction-away {
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Table Styles */
+.standings-table {
+  width: 100%;
+  font-size: 11px;
+  border-collapse: collapse;
+}
+
+.standings-table thead {
+  background: #dfdfdf;
+  border-bottom: 2px solid #808080;
+  position: sticky;
+  top: 0;
+}
+
+.standings-table th {
+  padding: 8px;
+  font-weight: bold;
+  color: black;
+  text-align: left;
+}
+
+.standings-table td {
+  padding: 8px;
+  color: black;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.standings-table tr:hover {
+  background: #dfdfdf;
+}
+
+/* Fantasy team builder styles */
+.fantasy-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 16px;
+  background: linear-gradient(135deg, #228b22 0%, #32cd32 100%);
+  border: 2px solid #000;
+  margin: 8px;
+}
+
+.fantasy-position {
+  text-align: center;
+  margin-bottom: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.fantasy-slot {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000;
+  padding: 8px;
+  min-height: 80px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.fantasy-slot:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.fantasy-slot.filled {
+  background: #c0c0c0;
+}
+
+.fantasy-player-name {
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+}
+
+.fantasy-player-team {
+  font-size: 9px;
+  color: #808080;
+}
+
+.fantasy-controls {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: #dfdfdf;
+  border-top: 2px solid #808080;
+}
+
+/* New Fantasy Team Builder Styles */
+.fantasy-container {
+  padding: 8px;
+  background: #c0c0c0;
+}
+
+.fantasy-challenges {
+  margin-bottom: 8px;
+  padding: 8px;
+  background: #dfdfdf;
+  border: 2px solid #808080;
+}
+
+.challenge-grid {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.challenge-btn {
+  padding: 6px 10px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: white #000 #000 white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.challenge-btn:hover {
+  background: #dfdfdf;
+}
+
+.challenge-btn.active {
+  border-color: #000 white white #000;
+  background: #a0a0a0;
+}
+
+.challenge-icon {
+  font-size: 14px;
+}
+
+.challenge-name {
+  font-weight: bold;
+}
+
+.challenge-description {
+  margin-top: 8px;
+  padding: 6px;
+  background: white;
+  border: 1px solid #808080;
+  font-size: 11px;
+  color: #000;
+}
+
+.formation-selector {
+  margin-bottom: 8px;
+  padding: 8px;
+  background: #dfdfdf;
+  border: 2px solid #808080;
+}
+
+.formation-buttons {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.formation-btn {
+  padding: 4px 8px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: white #000 #000 white;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.formation-btn.active {
+  border-color: #000 white white #000;
+  background: #0084ff;
+  color: white;
+}
+
+.team-budget {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  padding: 8px;
+  background: #dfdfdf;
+  border: 2px solid #808080;
+}
+
+.budget-info {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.budget-info.over-budget .budget-value {
+  color: red;
+  font-weight: bold;
+}
+
+.budget-label {
+  font-size: 11px;
+  color: #808080;
+}
+
+.budget-value {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+.fantasy-pitch {
+  background: linear-gradient(
+    180deg,
+    #228b22 0%,
+    #2e8b2e 10%,
+    #228b22 10%,
+    #2e8b2e 20%,
+    #228b22 20%,
+    #2e8b2e 30%,
+    #228b22 30%,
+    #2e8b2e 40%,
+    #228b22 40%,
+    #2e8b2e 50%,
+    #228b22 50%,
+    #2e8b2e 60%,
+    #228b22 60%,
+    #2e8b2e 70%,
+    #228b22 70%,
+    #2e8b2e 80%,
+    #228b22 80%,
+    #2e8b2e 90%,
+    #228b22 90%,
+    #2e8b2e 100%
+  );
+  border: 4px solid white;
+  border-radius: 4px;
+  padding: 16px 8px;
+  position: relative;
+  min-height: 320px;
+}
+
+.fantasy-pitch::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.fantasy-pitch::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+.pitch-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pitch-row.goalkeeper-row {
+  margin-bottom: 0;
+}
+
+.player-slot {
+  width: 70px;
+  height: 75px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.1s;
+}
+
+.player-slot:hover {
+  transform: scale(1.05);
+  background: white;
+}
+
+.player-slot.empty {
+  background: rgba(255, 255, 255, 0.6);
+  border-style: dashed;
+}
+
+.player-slot.filled {
+  background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+}
+
+.slot-position {
+  font-size: 10px;
+  font-weight: bold;
+  color: #808080;
+}
+
+.slot-add {
+  font-size: 24px;
+  color: #808080;
+}
+
+.player-kit {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #000;
+  background: #dfdfdf;
+}
+
+.player-kit img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.player-slot-name {
+  font-size: 9px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  max-width: 65px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-slot-info {
+  font-size: 8px;
+  color: #808080;
+}
+
+.remove-player {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 16px;
+  height: 16px;
+  background: #ff0000;
+  color: white;
+  border: 1px solid #000;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-player:hover {
+  background: #cc0000;
+}
+
+/* Player Selector Styles */
+.player-selector {
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.selector-header {
+  padding: 8px;
+  background: #dfdfdf;
+  border-bottom: 2px solid #808080;
+}
+
+.player-search {
+  width: 100%;
+  padding: 4px 8px;
+  margin-top: 8px;
+  border: 2px solid;
+  border-color: #808080 white white #808080;
+  font-size: 11px;
+}
+
+.player-list {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+.player-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid #c0c0c0;
+  cursor: pointer;
+  background: white;
+}
+
+.player-option:hover {
+  background: #0084ff;
+  color: white;
+}
+
+.player-option:hover .player-option-team,
+.player-option:hover .player-option-value {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.player-option-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #808080;
+  object-fit: contain;
+  background: #dfdfdf;
+}
+
+.player-option-info {
+  flex: 1;
+}
+
+.player-option-name {
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.player-option-team {
+  font-size: 10px;
+  color: #808080;
+}
+
+.player-option-stats {
+  text-align: right;
+}
+
+.player-option-rating {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0084ff;
+}
+
+.player-option:hover .player-option-rating {
+  color: white;
+}
+
+.player-option-value {
+  font-size: 10px;
+  color: #808080;
+}
+
+.fantasy-controls {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: #dfdfdf;
+  border-top: 2px solid #808080;
+  margin-top: 8px;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 32px;
+}
+
+.loading-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.loading-text {
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Hidden */
+.hidden {
+  display: none;
+}

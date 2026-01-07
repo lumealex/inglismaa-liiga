@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated Y2K color palette with hot pink, electric blue, lime green from reference images */
+  --background: #0000aa;
+  --foreground: #ffffff;
+  --card: #c0c0c0;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #0084ff; /* Electric blue */
+  --primary-foreground: #ffffff;
+  --secondary: #00ff00; /* Lime green */
+  --secondary-foreground: #000000;
+  --muted: #808080;
+  --muted-foreground: #ffffff;
+  --accent: #ff1493; /* Hot pink */
+  --accent-foreground: #ffffff;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --border: #000000;
+  --input: #ffffff;
+  --ring: #0084ff;
+  --radius: 0rem;
+  --sidebar: #c0c0c0;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #0084ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ff1493;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #000000;
+  --sidebar-ring: #0084ff;
+}
+
+@theme inline {
+  --font-sans: "MS Sans Serif", "Geist", "Geist Fallback", system-ui, sans-serif;
+  --font-mono: "Courier New", "Geist Mono", "Geist Mono Fallback", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: 0rem;
+  --radius-md: 0rem;
+  --radius-lg: var(--radius);
+  --radius-xl: 0rem;
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground overflow-hidden;
+  }
+}
+
+/* Windows 98/XP style custom styles */
+.window-98 {
+  border: 2px solid;
+  border-color: #dfdfdf #000000 #000000 #dfdfdf;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
+}
+
+.window-title-bar {
+  /* Updated gradient with Y2K colors - hot pink to electric blue */
+  background: linear-gradient(90deg, #ff1493, #0084ff);
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-98 {
+  border: 2px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  background: #c0c0c0;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  padding: 4px 12px;
+}
+
+.button-98:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+  box-shadow: inset -1px -1px 0 #dfdfdf, inset 1px 1px 0 #808080;
+}
+
+.taskbar {
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  box-shadow: inset 0 1px 0 #dfdfdf;
+}
+
+/* Added text-shadow utility for desktop icon labels */
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Added Windows XP Bliss wallpaper background */
+.xp-desktop {
+  background-image: url("/images/windows-xp-bliss.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
